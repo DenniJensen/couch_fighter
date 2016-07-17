@@ -1,0 +1,8 @@
+<h3>{{title}}</h3>
+
+<ul *ngFor='let player of players'>
+  <li>
+    <span> {{player.name}} </span>
+    <button (click)='removePlayer(player)' >Remove</button>
+  </li>
+</ul>

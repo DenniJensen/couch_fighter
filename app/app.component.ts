@@ -1,35 +1,27 @@
-import { Component } from '@angular/core';
-import { PlayerListComponent } from './player_list.component';
+import { Component, OnInit } from '@angular/core';
 
-class Player {
-  name: string;
-
-  constructor(name: string) {
-    this.name = name;
-  }
-}
+import { PlayersComponent } from './players.component';
+import { Player } from './player';
+import { PlayerService } from './player.service'
 
 @Component({
   selector: 'my-app',
   templateUrl: 'app/app.html',
-  directives: [PlayerListComponent]
+  directives: [PlayersComponent],
+  providers: [PlayerService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Street Fighter Action!!!!';
   playerName = '';
-  playerList: Player[] = [];
+  players: Player[];
 
-  addPlayer() {
-    name = this.playerName.trim();
-    if (name) {
-      var player = new Player(name);
-      this.playerList.push(player);
-      this.playerName = '';
-    }
+  constructor(private playerService: PlayerService) {}
+
+  ngOnInit() {
+    this.getHeros();
   }
 
-  removePlayer(player: Player) {
-    var index = this.playerList.indexOf(player);
-    this.playerList.splice(index, 1);
+  getHeros() {
+    this.playerService.getPlayers().then(players => this.players = players);
   }
 }

@@ -2,12 +2,11 @@
 <input [(ngModel)]=playerName (keyup.enter)='addPlayer()'>
 <button (click)='addPlayer()'> Hinzufügen </button>
 
-<player-list></player-list>
-
-<ul *ngFor='let player of playerList'>
+<ul *ngFor='let player of players'>
   <li>
     <span> {{player.name}} </span>
     <button (click)='removePlayer(player)' >Remove</button>
   </li>
 </ul>
 
+<players [players]=players ></players>
