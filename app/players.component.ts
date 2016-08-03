@@ -5,11 +5,10 @@ import { PlayerService } from './player.service'
 
 @Component({
   selector: 'players',
-  templateUrl: 'app/players.html',
-  providers: [PlayerService]
+  templateUrl: 'app/players.html'
 })
 export class PlayersComponent {
-  title = 'Player list';
+  title = 'Add Players';
   playerName = ''
   players: Player[];
 
