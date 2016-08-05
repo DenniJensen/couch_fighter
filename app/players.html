@@ -1,8 +1,15 @@
-<h2>{{title}}</h2>
+<h2>Add Players!</h2>
+
+<h3> Player Count: {{ players.length }} </h3>
+
 <input [(ngModel)]=playerName (keyup.enter)='addPlayer()'>
 <button (click)='addPlayer()'> Hinzufügen </button>
+
 <a *ngIf='enoughPlayers()'[routerLink]="['league']" >Lets Go</a>
 
+<span *ngIf='!enoughPlayers()'>
+  Players needed to start: {{ playerNeeded() }}
+</span>
 
 <ul *ngFor='let player of players'>
   <li>

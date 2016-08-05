@@ -10,7 +10,7 @@ import { PlayerService } from './player.service'
   directives: [ROUTER_DIRECTIVES]
 })
 export class PlayersComponent {
-  title = 'Add Players';
+  MINIMUM_PLAYERS = 3;
   playerName = ''
   players: Player[] = [];
 
@@ -27,7 +27,9 @@ export class PlayersComponent {
 
   addPlayer() {
     if (this.playerName.trim()) {
-      this.playerService.addPlayer(this.playerName);
+      if(!this.isExistingPlayer()) {
+        this.playerService.addPlayer(this.playerName);
+      }
     }
     this.playerName = '';
   }
@@ -36,7 +38,19 @@ export class PlayersComponent {
     this.playerService.removePlayer(player);
   }
 
+  playerNeeded() {
+    return this.MINIMUM_PLAYERS - this.players.length
+  }
+
   enoughPlayers() {
     return this.players.length > 2
+  }
+
+  private isExistingPlayer() {
+    let playerName = this.playerName;
+    let found = this.players.find(function(player) {
+      return player.name == playerName;
+    });
+    return (found) ? true : false;
   }
 }
