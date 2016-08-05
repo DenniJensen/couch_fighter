@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Player } from './player'
+import { Result } from './result'
 
 @Component({
   selector: 'result',
@@ -7,15 +8,20 @@ import { Player } from './player'
 })
 export class ResultComponent {
   @Input()
-  player1: Player = {name: 'Player1'}
-
+  player1: Player;
   @Input()
-  player2: Player = {name: 'Player2'};
+  player2: Player;
 
-  playerResult1: number;
-  playerResult2: number;
+  private score1: number;
+  private score2: number;
+
+  @Output()
+  result = new EventEmitter<Result>();
 
   emitResult() {
-    alert(this.playerResult1 + ' vs ' + this.playerResult2)
+    let result = new Result(this.score1, this.score2);
+    this.result.emit(result);
+    this.result1 = '';
+    this.result2 = '';
   }
 }

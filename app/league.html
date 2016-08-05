@@ -1,4 +1,9 @@
-<!-- <a [routerLink]="['']">Players</a> -->
+<result *ngIf='isSettedUp()'
+  [player1]="getCurrentMatch().player1"
+  [player2]="getCurrentMatch().player2"
 
-<result [player1]="{name: 'Player1'}" [player1]="{name: 'Player2'}"></result>
+  (result)="onResult($event)"
+>
+</result>
+
 <league-table [players]='players'></league-table>
