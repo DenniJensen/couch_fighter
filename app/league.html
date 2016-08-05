@@ -1,6 +1,4 @@
-<h2> TEILNEHMER </h2>
-<ul *ngFor='let player of players'>
-  <li>
-    <span> {{player.name}} </span>
-  </li>
-</ul>
+<!-- <a [routerLink]="['']">Players</a> -->
+
+<result [player1]="{name: 'Player1'}" [player1]="{name: 'Player2'}"></result>
+<league-table [players]='players'></league-table>
