@@ -1,10 +1,14 @@
 <h2>{{title}}</h2>
 <input [(ngModel)]=playerName (keyup.enter)='addPlayer()'>
 <button (click)='addPlayer()'> Hinzufügen </button>
+<a *ngIf='enoughPlayers()'[routerLink]="['league']" >Lets Go</a>
+
 
 <ul *ngFor='let player of players'>
   <li>
+    <span> {{player.id}} </span>
     <span> {{player.name}} </span>
     <button (click)='removePlayer(player)' >Remove</button>
   </li>
 </ul>
+
