@@ -7,10 +7,7 @@ import { Result } from './result'
   templateUrl: 'app/result.html'
 })
 export class ResultComponent {
-  @Input()
-  player1: Player;
-  @Input()
-  player2: Player;
+  @Input() currentMatch: Match;
 
   private score1: number;
   private score2: number;
@@ -21,7 +18,7 @@ export class ResultComponent {
   emitResult() {
     let result = new Result(this.score1, this.score2);
     this.result.emit(result);
-    this.result1 = '';
-    this.result2 = '';
+    this.score1 = undefined;
+    this.score2 = undefined;
   }
 }

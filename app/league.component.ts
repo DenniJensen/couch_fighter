@@ -14,7 +14,8 @@ import { PlayerService } from './player.service'
 export class LeagueComponent implements OnInit {
   currentMatch: number = 0;
   players: Player[] = [];
-  private matches = [];
+
+  private matches: Match[] = [];
 
   constructor(private playerService: PlayerService) {}
 
@@ -36,9 +37,10 @@ export class LeagueComponent implements OnInit {
     return this.matches.length > 0;
   }
 
-  onResult(fakeResult: Match) {
+  onResult(result: Result) {
     console.log('Got emitted!');
-    console.log(fakeResult);
+    console.log('Score1: ' + result.score1);
+    console.log('Score2: ' + result.score2);
     this.nextMatch();
   }
 
