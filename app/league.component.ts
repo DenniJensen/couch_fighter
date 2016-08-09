@@ -14,6 +14,7 @@ import { ResultComponent } from './result.component'
   directives: [ResultComponent, LeagueTableComponent]
 })
 export class LeagueComponent implements OnInit {
+  private currentResult;
   private currentMatchCount: number = 0;
   private matches: Match[] = [];
   private players: Player[] = [];
@@ -32,8 +33,8 @@ export class LeagueComponent implements OnInit {
     });
   }
 
-  private scheduleMatches(players: Player[]) {
-    let players = players.slice(0, players.length)
+  private scheduleMatches(thePlayers: Player[]) {
+    let players = thePlayers.slice(0, thePlayers.length)
     if (players.length % 2 != 0) {
       players.push( undefined );
     }
@@ -41,7 +42,7 @@ export class LeagueComponent implements OnInit {
     this.totalMatchCount = this.matches.length
   }
 
-  private assignMatchesFor(players: Players) {
+  private assignMatchesFor(players: Player[]) {
     let half_size = players.length / 2
     let first_half = players.slice(0, half_size)
     let secound_half = players.slice(half_size, players.length)
