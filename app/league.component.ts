@@ -14,7 +14,7 @@ import { ResultComponent } from './result.component'
   directives: [ResultComponent, LeagueTableComponent]
 })
 export class LeagueComponent implements OnInit {
-  private currentResult;
+  private currentMatchResult;
   private currentMatchCount: number = 0;
   private matches: Match[] = [];
   private players: Player[] = [];
@@ -68,7 +68,7 @@ export class LeagueComponent implements OnInit {
   }
 
   onResult(result: Result) {
-    this.currentResult = new MatchResult(this.getCurrentMatch(), result);
+    this.currentMatchResult = new MatchResult(this.getCurrentMatch(), result);
     this.nextMatch();
   }
 

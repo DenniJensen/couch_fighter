@@ -12,12 +12,12 @@ export class LeagueTableComponent implements OnChanges {
   players: Player[] = [];
 
   @Input()
-  currentResult;
+  currentMatchResult;
 
   private scoreBoard: Score[] = []
 
   ngOnChanges(change) {
-    if (change.currentResult && change.currentResult.currentValue) {
+    if (change.currentMatchResult && change.currentMatchResult.currentValue) {
       this.handleNewResult();
     }
     if (change.players) {
@@ -28,8 +28,16 @@ export class LeagueTableComponent implements OnChanges {
   }
 
   private handleNewResult() {
-    console.log('Result changed!!!');
-    console.log(this.currentResult);
+    let match = this.currentMatchResult.match;
+    let player1 = this.getScoreFromPlayerName(match.player1.name);
+    let player2 = this.getScoreFromPlayerName(match.player2.name);
+    let result = this.currentMatchResult.result;
+    player1.addScore(result.score1, result.score2);
+    player2.addScore(result.score2, result.score1);
+  }
+
+  private getScoreFromPlayerName(name: string) {
+    return this.scoreBoard.find((score) => { return score.name == name });
   }
 
   private buildScoreBoard() {

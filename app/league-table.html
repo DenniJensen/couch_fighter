@@ -2,14 +2,16 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Games</th>
     <th>Wins</th>
     <th>Looses</th>
     <th>Points</th>
   </tr>
   <tr *ngFor='let score of scoreBoard'>
     <td> {{score.name}} </td>
+    <td> {{score.gamesPlayed}} </td>
     <td> {{score.wins}} </td>
     <td> {{score.defeats}} </td>
-    <td>0</td>
+    <td> {{score.points}} </td>
   </tr>
 </table>
