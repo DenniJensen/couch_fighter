@@ -17,8 +17,8 @@ export class LeagueTableComponent implements OnChanges {
   private scoreBoard: Score[] = []
 
   ngOnChanges(change) {
-    if (change.result) {
-      console.log('Result changed!!!');
+    if (change.currentResult && change.currentResult.currentValue) {
+      this.handleNewResult();
     }
     if (change.players) {
       if (change.players.currentValue.length > 0) {
@@ -27,9 +27,14 @@ export class LeagueTableComponent implements OnChanges {
     }
   }
 
+  private handleNewResult() {
+    console.log('Result changed!!!');
+    console.log(this.currentResult);
+  }
+
   private buildScoreBoard() {
     for(let player of this.players) {
-      this.scoreBoard.push(new Score(player))
+      this.scoreBoard.push(new Score(player));
     }
   }
 }

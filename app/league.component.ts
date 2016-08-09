@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 
 import { LeagueTableComponent } from './league-table.component'
 import { Match } from './match'
+import { MatchResult } from './match-result'
 import { Player } from './player'
 import { PlayerService } from './player.service'
 import { Result } from './result'
@@ -13,7 +14,7 @@ import { ResultComponent } from './result.component'
   directives: [ResultComponent, LeagueTableComponent]
 })
 export class LeagueComponent implements OnInit {
-  private currentMatch: number = 0;
+  private currentMatchCount: number = 0;
   private matches: Match[] = [];
   private players: Player[] = [];
   private totalMatchCount: number = 0;
@@ -58,7 +59,7 @@ export class LeagueComponent implements OnInit {
   }
 
   getCurrentMatch() {
-    return this.matches[this.currentMatch]
+    return this.matches[this.currentMatchCount]
   }
 
   isSettedUp() {
@@ -66,16 +67,13 @@ export class LeagueComponent implements OnInit {
   }
 
   onResult(result: Result) {
-    console.log('Got emitted!');
-    console.log('Score1: ' + result.score1);
-    console.log('Score2: ' + result.score2);
-    // Push match + score into MatchesService
+    this.currentResult = new MatchResult(this.getCurrentMatch(), result);
     this.nextMatch();
   }
 
   nextMatch() {
-    if (this.currentMatch < this.matches.length - 1) {
-      this.currentMatch++;
+    if (this.currentMatchCount < this.matches.length - 1) {
+      this.currentMatchCount++;
     }
   }
 }
