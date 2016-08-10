@@ -4,7 +4,6 @@ export class Score {
   defeats: number = 0;
   gamesPlayed: number = 0;
   name: string;
-  points: number = 0;
   scoreNegative: number = 0;
   scorePositive: number = 0;
   wins: number = 0;
@@ -18,10 +17,13 @@ export class Score {
     this.scoreNegative += opponentScore;
     if (ownScore > opponentScore) {
       this.wins++;
-      this.points++;
     } else {
       this.defeats++;
     }
     this.gamesPlayed++;
+  }
+
+  getPoints(): number {
+    return this.wins
   }
 }
