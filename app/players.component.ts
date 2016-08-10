@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { Player } from './player';
 import { PlayerService } from './player.service'
 
 @Component({
   selector: 'players',
-  templateUrl: 'app/players.html',
-  directives: [ROUTER_DIRECTIVES]
+  templateUrl: 'app/players.html'
 })
 export class PlayersComponent {
   MINIMUM_PLAYERS = 3;

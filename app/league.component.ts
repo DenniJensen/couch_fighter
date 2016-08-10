@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core'
 
-import { LeagueTableComponent } from './league-table.component'
 import { Match } from './match'
 import { MatchResult } from './match-result'
 import { Player } from './player'
 import { PlayerService } from './player.service'
 import { Result } from './result'
-import { ResultComponent } from './result.component'
 
 @Component({
   selector: 'league',
   templateUrl: 'app/league.html',
-  directives: [ResultComponent, LeagueTableComponent]
 })
 export class LeagueComponent implements OnInit {
   private currentMatchResult;

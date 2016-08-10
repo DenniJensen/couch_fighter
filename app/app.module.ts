@@ -3,11 +3,19 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { routing } from './app.routing'
+import { LeagueComponent } from './league.component'
+import { LeagueTableComponent } from './league-table.component'
 import { PlayerService } from './player.service';
+import { ResultComponent } from './result.component'
+import { routing } from './app.routing'
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [
+      AppComponent,
+      LeagueComponent,
+      ResultComponent,
+      LeagueTableComponent
+    ],
     imports: [
       BrowserModule,
       FormsModule,
