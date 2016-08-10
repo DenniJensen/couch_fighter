@@ -11,7 +11,7 @@ import { PlayerService } from './player.service'
 })
 export class PlayersComponent {
   MINIMUM_PLAYERS = 3;
-  playerName = ''
+  playerName = '';
   players: Player[] = [];
 
   constructor(private playerService: PlayerService) {}
@@ -20,7 +20,7 @@ export class PlayersComponent {
     this.getPlayers();
   }
 
-  getPlayers() {
+  private getPlayers() {
     this.playerService.getPlayers()
       .then(players => this.players = players);
   }

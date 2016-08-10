@@ -5,7 +5,7 @@ import { Score } from './score'
 
 @Component({
   selector: 'league-table',
-  templateUrl: 'app/league-table.html'
+  templateUrl: 'app/league-table.html',
 })
 export class LeagueTableComponent implements OnChanges {
   @Input()
@@ -14,16 +14,13 @@ export class LeagueTableComponent implements OnChanges {
   @Input()
   currentMatchResult;
 
-  private scoreBoard: Score[] = []
+  private scoreBoard: Score[] = [];
 
   ngOnChanges(change) {
     if (change.currentMatchResult && change.currentMatchResult.currentValue) {
       this.handleNewResult();
-    }
-    if (change.players) {
-      if (change.players.currentValue.length > 0) {
-        this.buildScoreBoard();
-      }
+    } else if (change.players && change.players.currentValue.length > 0) {
+      this.buildScoreBoard();
     }
   }
 
@@ -34,14 +31,21 @@ export class LeagueTableComponent implements OnChanges {
     let result = this.currentMatchResult.result;
     player1.addScore(result.score1, result.score2);
     player2.addScore(result.score2, result.score1);
+    this.sortScoreBoard();
   }
 
   private getScoreFromPlayerName(name: string) {
-    return this.scoreBoard.find((score) => { return score.name == name });
+    return this.scoreBoard.find((score) => { return score.name == name })
+  }
+
+  private sortScoreBoard() {
+    this.scoreBoard.sort((score1, score2) => {
+      return score2.getPoints() - score1.getPoints();
+    });
   }
 
   private buildScoreBoard() {
-    for(let player of this.players) {
+    for (let player of this.players) {
       this.scoreBoard.push(new Score(player));
     }
   }

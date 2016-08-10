@@ -2,7 +2,7 @@
 
 <h3> Player Count: {{ players.length }} </h3>
 
-<input [(ngModel)]=playerName (keyup.enter)='addPlayer()'>
+<input [(ngModel)]='playerName'(keyup.enter)='addPlayer()'>
 <button (click)='addPlayer()'> Hinzufügen </button>
 
 <a *ngIf='enoughPlayers()'[routerLink]="['league']" >Lets Go</a>
