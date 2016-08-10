@@ -1,21 +1,26 @@
 <h2>Add Players!</h2>
 
 <h3> Player Count: {{ players.length }} </h3>
+<form class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+    <div class="input-group">
+      <input class='form-control' placeholder='Player Name' [(ngModel)]='playerName'(keyup.enter)='addPlayer()'>
+    </div>
+  </div>
+  <button class='btn btn-default' (click)='addPlayer()'> Hinzufügen </button>
+  <button class='btn btn-primary' *ngIf='enoughPlayers()'[routerLink]="['league']" >Lets Go</button>
+  <span *ngIf='!enoughPlayers()'>
+    Players needed to start: {{ playerNeeded() }}
+  </span>
+</form>
 
-<input [(ngModel)]='playerName'(keyup.enter)='addPlayer()'>
-<button (click)='addPlayer()'> Hinzufügen </button>
-
-<a *ngIf='enoughPlayers()'[routerLink]="['league']" >Lets Go</a>
-
-<span *ngIf='!enoughPlayers()'>
-  Players needed to start: {{ playerNeeded() }}
-</span>
-
-<ul *ngFor='let player of players'>
-  <li>
-    <span> {{player.id}} </span>
-    <span> {{player.name}} </span>
-    <button (click)='removePlayer(player)' >Remove</button>
-  </li>
-</ul>
+<div class=col-md-6>
+  <ul class="list-unstyled" *ngFor='let player of players'>
+    <li class=row>
+      <span class=col-md-3> {{player.name}} </span>
+      <button class='col-md-3 btn btn-sm btn-danger' (click)='removePlayer(player)' >Remove</button>
+    </li>
+  </ul>
+</div>
 

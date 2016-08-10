@@ -1,10 +1,10 @@
-<result *ngIf='isSettedUp()'
+<result class='col-md-6' *ngIf='isSettedUp()'
   [currentMatch]='getCurrentMatch()'
   [totalMatchCount]='totalMatchCount'
   (result)="onResult($event)">
 </result>
 
-<league-table
+<league-table class='col-md-6'
   [players]='players'
   [currentMatchResult]='currentMatchResult'>
 </league-table>
