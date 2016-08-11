@@ -4,6 +4,7 @@ import { Match } from './match'
 import { MatchResult } from './match-result'
 import { Player } from './player'
 import { PlayerService } from './player.service'
+import { ConfigService } from './config.service'
 import { Result } from './result'
 
 @Component({
@@ -17,7 +18,8 @@ export class LeagueComponent implements OnInit {
   private players: Player[] = [];
   private totalMatchCount: number = 0;
 
-  constructor(private playerService: PlayerService) {}
+  constructor(private playerService: PlayerService,
+              private configService: ConfigService) {}
 
   ngOnInit() {
     this.setUpTournemant();
@@ -35,7 +37,10 @@ export class LeagueComponent implements OnInit {
     if (players.length % 2 != 0) {
       players.push( undefined );
     }
-    this.assignMatchesFor(players);
+    for (let roundRobins = 0;
+         roundRobins < this.configService.roundRobinRounds; roundRobins++) {
+      this.assignMatchesFor(players);
+    }
     this.totalMatchCount = this.matches.length
   }
 
