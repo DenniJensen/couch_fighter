@@ -38,7 +38,7 @@ export class LeagueComponent implements OnInit {
       players.push( undefined );
     }
     for (let roundRobins = 0;
-         roundRobins < this.configService.roundRobinRounds; roundRobins++) {
+         roundRobins < this.configService.getRoundRobinRounds(); roundRobins++) {
       this.assignMatchesFor(players);
     }
     this.totalMatchCount = this.matches.length
